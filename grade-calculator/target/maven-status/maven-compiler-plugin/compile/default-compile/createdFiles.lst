@@ -1,0 +1,7 @@
+edu/utec/gradecalculator/GradeCalculator.class
+edu/utec/gradecalculator/App.class
+edu/utec/gradecalculator/AttendancePolicy.class
+edu/utec/gradecalculator/exceptions/InvalidDataException.class
+edu/utec/gradecalculator/Result.class
+edu/utec/gradecalculator/ExtraPointsPolicy.class
+edu/utec/gradecalculator/Evaluation.class

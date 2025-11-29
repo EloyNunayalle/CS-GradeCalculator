@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>App.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">grade-calculator</a> &gt; <a href="index.source.html" class="el_package">edu.utec.gradecalculator</a> &gt; <span class="el_source">App.java</span></div><h1>App.java</h1><pre class="source lang-java linenums">package edu.utec.gradecalculator;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+/**
+ * Aplicación principal interactiva.
+ */
+<span class="nc" id="L10">public class App {</span>
+    public static void main(String[] args) {
+<span class="nc" id="L12">        Scanner scanner = new Scanner(System.in);</span>
+<span class="nc" id="L13">        System.out.println(&quot;=== CS-GradeCalculator ===&quot;);</span>
+
+        try {
+<span class="nc" id="L16">            GradeCalculator calculator = new GradeCalculator();</span>
+<span class="nc" id="L17">            List&lt;Evaluation&gt; evaluations = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L19">            System.out.println(&quot;Ingrese las evaluaciones (Máximo 10).&quot;);</span>
+<span class="nc" id="L20">            System.out.println(&quot;Escriba 'fin' como nota para terminar.&quot;);</span>
+
+            while (true) {
+<span class="nc bnc" id="L23" title="All 2 branches missed.">                if (evaluations.size() &gt;= 10) {</span>
+<span class="nc" id="L24">                    System.out.println(&quot;Se ha alcanzado el número máximo de evaluaciones (10).&quot;);</span>
+<span class="nc" id="L25">                    break;</span>
+                }
+
+<span class="nc" id="L28">                System.out.print(&quot;Ingrese nota (0-20) o 'fin': &quot;);</span>
+<span class="nc" id="L29">                String input = scanner.next();</span>
+
+<span class="nc bnc" id="L31" title="All 2 branches missed.">                if (input.equalsIgnoreCase(&quot;fin&quot;)) {</span>
+<span class="nc" id="L32">                    break;</span>
+                }
+
+                try {
+<span class="nc" id="L36">                    double value = Double.parseDouble(input);</span>
+<span class="nc" id="L37">                    System.out.print(&quot;Ingrese peso (0.0 - 1.0): &quot;);</span>
+<span class="nc" id="L38">                    double weight = scanner.nextDouble();</span>
+
+<span class="nc" id="L40">                    evaluations.add(new Evaluation(value, weight));</span>
+<span class="nc" id="L41">                } catch (NumberFormatException e) {</span>
+<span class="nc" id="L42">                    System.out.println(&quot;Entrada inválida. Por favor ingrese un número.&quot;);</span>
+<span class="nc" id="L43">                } catch (Exception e) {</span>
+<span class="nc" id="L44">                    System.out.println(&quot;Error al agregar evaluación: &quot; + e.getMessage());</span>
+<span class="nc" id="L45">                }</span>
+<span class="nc" id="L46">            }</span>
+
+<span class="nc" id="L48">            System.out.print(&quot;¿El estudiante cumplió con la asistencia mínima? (true/false): &quot;);</span>
+<span class="nc" id="L49">            boolean hasReachedMinimumClasses = scanner.nextBoolean();</span>
+
+<span class="nc" id="L51">            System.out.print(&quot;¿Los docentes de todos los años están de acuerdo para puntos extra? (true/false): &quot;);</span>
+<span class="nc" id="L52">            boolean allYearsTeachers = scanner.nextBoolean();</span>
+
+<span class="nc" id="L54">            Result result = calculator.calculate(evaluations, hasReachedMinimumClasses, allYearsTeachers);</span>
+<span class="nc" id="L55">            System.out.println(&quot;\n=== Resultado ===&quot;);</span>
+<span class="nc" id="L56">            System.out.println(result);</span>
+
+<span class="nc" id="L58">        } catch (Exception e) {</span>
+<span class="nc" id="L59">            System.err.println(&quot;Error en el cálculo: &quot; + e.getMessage());</span>
+        } finally {
+<span class="nc" id="L61">            scanner.close();</span>
+        }
+<span class="nc" id="L63">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
